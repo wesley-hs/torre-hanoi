@@ -74,24 +74,7 @@ O número mínimo de movimentos para resolver o puzzle é **2^n - 1**, onde n é
 
 Não é necessário servidor web - o jogo roda diretamente no navegador.
 
-### Online (GitHub Pages):
-1. **Siga as instruções em `DEPLOY.md`**
-2. **Ou execute o script `deploy.bat`**
-3. **Acesse: `https://seu-usuario.github.io/torre-de-hanoi/`**
 
-## 🌐 Deploy no GitHub Pages
-
-Para disponibilizar o jogo online gratuitamente:
-
-1. **Instale o Git** (se não tiver): https://git-scm.com/download/windows
-2. **Crie uma conta no GitHub**: https://github.com
-3. **Siga o guia completo** em `DEPLOY.md`
-4. **Ou use o script automatizado** `deploy.bat`
-
-Após o deploy, o jogo ficará disponível em:
-```
-https://seu-usuario.github.io/nome-do-repositorio/
-```
 
 ## 📝 Contribuição
 
