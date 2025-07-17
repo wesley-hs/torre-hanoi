@@ -1,0 +1,347 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    width: 90%;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-info {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.game-info p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.game-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.difficulty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.difficulty label {
+    font-weight: bold;
+    color: #333;
+}
+
+.difficulty select {
+    padding: 8px;
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.difficulty button {
+    padding: 8px 16px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.difficulty button:hover {
+    background: #45a049;
+}
+
+.stats {
+    display: flex;
+    gap: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.stats span {
+    padding: 5px 10px;
+    background: #f0f0f0;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.game-board {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    height: 300px;
+    margin: 40px 0;
+    position: relative;
+}
+
+.tower {
+    position: relative;
+    width: 200px;
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.tower:hover {
+    transform: translateY(-5px);
+}
+
+.tower-base {
+    width: 180px;
+    height: 20px;
+    background: #8B4513;
+    border-radius: 10px;
+    position: absolute;
+    bottom: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.tower-pole {
+    width: 8px;
+    height: 250px;
+    background: #654321;
+    position: absolute;
+    bottom: 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.tower-label {
+    position: absolute;
+    bottom: -30px;
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+}
+
+.disk {
+    height: 25px;
+    border-radius: 15px;
+    position: absolute;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border: 2px solid #333;
+    z-index: 10;
+}
+
+.disk:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.disk.selected {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    z-index: 20;
+}
+
+.disk.size-1 {
+    width: 60px;
+    background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+}
+
+.disk.size-2 {
+    width: 80px;
+    background: linear-gradient(45deg, #4ECDC4, #6FE6DD);
+}
+
+.disk.size-3 {
+    width: 100px;
+    background: linear-gradient(45deg, #45B7D1, #6BC5E8);
+}
+
+.disk.size-4 {
+    width: 120px;
+    background: linear-gradient(45deg, #96CEB4, #A8D5BA);
+}
+
+.disk.size-5 {
+    width: 140px;
+    background: linear-gradient(45deg, #FECA57, #FED766);
+}
+
+.disk.size-6 {
+    width: 160px;
+    background: linear-gradient(45deg, #FF9FF3, #FFB3F7);
+}
+
+.tower.highlight {
+    background: rgba(76, 175, 80, 0.2);
+    border-radius: 10px;
+}
+
+.tower.invalid {
+    background: rgba(244, 67, 54, 0.2);
+    border-radius: 10px;
+}
+
+.message {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    min-height: 25px;
+    color: #333;
+    margin-top: 20px;
+}
+
+.victory-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.victory-popup.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.victory-content {
+    background: white;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: scale(0.8);
+    transition: transform 0.3s ease;
+}
+
+.victory-popup.show .victory-content {
+    transform: scale(1);
+}
+
+.victory-content h2 {
+    color: #4CAF50;
+    margin-bottom: 20px;
+    font-size: 2.5em;
+}
+
+.victory-content p {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+.victory-stats {
+    margin: 20px 0;
+    padding: 20px;
+    background: #f0f0f0;
+    border-radius: 10px;
+}
+
+.victory-stats p {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+.victory-stats span {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+#play-again {
+    padding: 15px 30px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+#play-again:hover {
+    background: #45a049;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+        width: 95%;
+    }
+    
+    h1 {
+        font-size: 2em;
+    }
+    
+    .game-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .stats {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .game-board {
+        height: 250px;
+    }
+    
+    .tower {
+        width: 150px;
+        height: 230px;
+    }
+    
+    .tower-base {
+        width: 140px;
+    }
+    
+    .tower-pole {
+        height: 200px;
+    }
+    
+    .disk.size-1 { width: 50px; }
+    .disk.size-2 { width: 65px; }
+    .disk.size-3 { width: 80px; }
+    .disk.size-4 { width: 95px; }
+    .disk.size-5 { width: 110px; }
+    .disk.size-6 { width: 125px; }
+}
