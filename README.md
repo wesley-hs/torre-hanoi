@@ -74,7 +74,7 @@ O número mínimo de movimentos para resolver o puzzle é **2^n - 1**, onde n é
 
 Não é necessário servidor web - o jogo roda diretamente no navegador.
 
-
+<a href="https://wesley-hs.github.io/torre-hanoi/" target="_blank">▶️ Jogar Torre de Hanoi</a>
 
 ## 📝 Contribuição
 
